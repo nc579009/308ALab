@@ -1,17 +1,18 @@
-import * as Carousel from "./Carousel.js";
-import axios from "axios";
+import * as Carousel from './Carousel.js';
+// You have axios, you don't need to import it
+console.log(axios);
 
 // The breed selection input element.
-const breedSelect = document.getElementById("breedSelect");
+const breedSelect = document.getElementById('breedSelect');
 // The information section div element.
-const infoDump = document.getElementById("infoDump");
+const infoDump = document.getElementById('infoDump');
 // The progress bar div element.
-const progressBar = document.getElementById("progressBar");
+const progressBar = document.getElementById('progressBar');
 // The get favourites button element.
-const getFavouritesBtn = document.getElementById("getFavouritesBtn");
+const getFavouritesBtn = document.getElementById('getFavouritesBtn');
 
 // Step 0: Store your API key here for reference and easy access.
-const API_KEY = "";
+const API_KEY = '';
 
 /**
  * 1. Create an async function "initialLoad" that does the following:
@@ -21,6 +22,25 @@ const API_KEY = "";
  *  - Each option should display text equal to the name of the breed.
  * This function should execute immediately.
  */
+async function initialLoad() {
+  try {
+    const res = await fetch('https://api.thecatapi.com/v1/breeds');
+    const data = await res.json();
+    console.log(data);
+    for (const breed of data ) {
+      const option = document.createElement('option');
+      option.setAttribute('value', breed.id);
+      option.textContent = breed.name;
+      breedSelect.append(option)
+    }
+
+  }catch(error){
+    console.error(error);
+  }
+
+}
+
+initialLoad();
 
 /**
  * 2. Create an event handler for breedSelect that does the following:
@@ -36,6 +56,12 @@ const API_KEY = "";
  * - Each new selection should clear, re-populate, and restart the Carousel.
  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
  */
+
+
+//at this point push your code up to your own Git hub
+// got to the folder you cloned in today, and clone your git hub again and give it the name below
+
+
 
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
