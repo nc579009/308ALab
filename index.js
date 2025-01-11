@@ -233,7 +233,7 @@ axios.interceptors.request.use(request => {
     console.log(complete)
   }
 
-  request.onDownloadProgress = updateProgress;
+ request.onDownloadProgress = updateProgress;
  document.body.style.cursor = 'progress';
 
   return request;
@@ -243,6 +243,7 @@ axios.interceptors.response.use(
   (response) => {
       response.config.metadata.endTime = new Date().getTime();
       response.config.metadata.durationInMS = response.config.metadata.endTime - response.config.metadata.startTime;
+      
       document.body.style.cursor = '';
 
       console.log(`Request took ${response.config.metadata.durationInMS} milliseconds.`)
