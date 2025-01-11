@@ -276,7 +276,22 @@ axios.interceptors.response.use(
  */
 export async function favourite(imgId) {
   // your code here
+  try {
+    const favImg = await axios.post(`https://api.thecatapi.com/v1/favourites`, { 
+      image_id: imgId, 
+      sub_id: 'test',
+      api_key: API_KEY
+    });
+    favourites.push(favImg);
+    console.log(favImg);
+    console.log(favImg.data);
+  } catch (error) {
+    console.log(error);
+  }
 }
+favourite()
+    
+
 
 /**
  * 9. Test your favourite() function by creating a getFavourites() function.
